@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- '4'
+env:
+  global:
+  - PRODUCTION_BRANCH=publish
+cache:
+  directories:
+  - node_modules
+before_install:
+- chmod +x ./.build_scripts/lint.sh
+script:
+# - npm test
+# - ./.build_scripts/lint.sh
+- npm run build
+deploy:
