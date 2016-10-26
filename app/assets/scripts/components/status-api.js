@@ -13,7 +13,7 @@ var StatusApi = React.createClass({
   },
 
   componentDidMount: function () {
-    fetch(`${config.api}status`)
+    fetch(`${config.api}/status`)
       .then(response => {
         return response.json();
       })

@@ -6,7 +6,7 @@ var logo = require('./logo');
 module.exports = {
   environment: 'production',
   consoleMessage: logo,
-  api: 'https://api.openaq.org/',
+  api: 'https://api.openaq.org',
   apiDocs: 'https://docs.openaq.org'
 };
 
