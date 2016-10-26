@@ -1,8 +1,31 @@
 'use strict';
 import React from 'react';
 
+import config from '../config';
+
 var StatusApi = React.createClass({
   displayName: 'StatusApi',
+
+  getInitialState: function () {
+    return {
+      health: null
+    }
+  },
+
+  componentDidMount: function () {
+    fetch(`${config.api}status`)
+      .then(response => {
+        return response.json();
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .then(json => {
+        this.setState({
+          health: json.results.health_status
+        })
+      })
+  },
 
   render: function () {
     return (
@@ -15,7 +38,14 @@ var StatusApi = React.createClass({
             </div>
           </header>
           <div className='fold__body'>
-            status overview of API
+            { this.state.health ?
+              <p className={ this.state.health }>
+                { this.state.health }
+              </p> :
+              <p className='unknown'>
+                API health unknown
+              </p>
+            }
           </div>
         </div>
       </section>
