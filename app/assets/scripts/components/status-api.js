@@ -3,28 +3,46 @@ import React from 'react';
 
 import config from '../config';
 
+// map New Relic statuses to the OpenAQ alert classes (_alerts.scss)
+const statusMap = {
+  'green': {
+    'classes': 'alert alert--success',
+    'message': 'API is up and running'
+  },
+  'orange': {
+    'classes': 'alert alert--warning',
+    'message': 'Something\'s not right'
+  },
+  'red': {
+    'classes': 'alert alert--danger',
+    'message': 'The API is down'
+  }
+};
+
 var StatusApi = React.createClass({
   displayName: 'StatusApi',
 
   getInitialState: function () {
     return {
-      health: null
-    }
+      'classes': 'alert alert--info',
+      'message': 'API health unknown'
+    };
   },
 
   componentDidMount: function () {
-    fetch(`${config.api}/status`)
+    fetch(`${config.apiBase}/status`)
       .then(response => {
         return response.json();
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       })
       .then(json => {
-        this.setState({
-          health: json.results.health_status
-        })
-      })
+        let s = json.results ? json.results.health_status : undefined;
+        if (s && statusMap[s]) {
+          this.setState(statusMap[s]);
+        }
+      });
   },
 
   render: function () {
@@ -33,19 +51,11 @@ var StatusApi = React.createClass({
         <div className='inner'>
           <header className='fold__header'>
             <h1 className='fold__title'>API health</h1>
-            <div className='fold__introduction prose prose--responsive'>
-              <p>Intro</p>
-            </div>
           </header>
           <div className='fold__body'>
-            { this.state.health ?
-              <p className={ this.state.health }>
-                { this.state.health }
-              </p> :
-              <p className='unknown'>
-                API health unknown
-              </p>
-            }
+            <p className={ this.state.classes }>
+              { this.state.message }
+            </p>
           </div>
         </div>
       </section>
