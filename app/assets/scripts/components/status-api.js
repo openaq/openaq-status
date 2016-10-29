@@ -32,15 +32,18 @@ var StatusApi = React.createClass({
   componentDidMount: function () {
     fetch(`${config.apiBase}/status`)
       .then(response => {
-        return response.json();
+        if (response.status > 300) {
+          return 'red';
+        } else if (response.json.results) {
+          return response.json.results.health_status || undefined;
+        }
       })
       .catch(err => {
         console.log(err);
       })
-      .then(json => {
-        let s = json.results ? json.results.health_status : undefined;
-        if (s && statusMap[s]) {
-          this.setState(statusMap[s]);
+      .then(status => {
+        if (status && statusMap[status]) {
+          this.setState(statusMap[status]);
         }
       });
   },
