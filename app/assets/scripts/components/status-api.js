@@ -48,13 +48,13 @@ var StatusApi = React.createClass({
         if (status && statusMap[status]) {
           this.setState({
             'status': status
-          })
+          });
         }
       });
   },
 
   render: function () {
-    let s = statusMap[this.state.status]
+    let s = statusMap[this.state.status];
     return (
       <section className='fold' id='status__api'>
         <div className='inner'>

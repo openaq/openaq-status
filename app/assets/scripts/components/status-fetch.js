@@ -16,11 +16,13 @@ const statusMap = {
   },
   'timeAgo': {
     'message': 'The last fetch started more than 10 minutes ago.',
-    'classes': 'alert alert--warning'
+    'classes': 'alert alert--warning',
+    warning (state) { return state.lastFinish > 720; }
   },
   'noResults': {
     'message': 'The last five fetches yielded no results.',
-    'classes': 'alert alert--warning'
+    'classes': 'alert alert--warning',
+    warning (state) { return state.count === 0; }
   }
 };
 
@@ -72,19 +74,22 @@ var StatusFetch = React.createClass({
       }).then(json => {
         // if no status has been set thus far, check for warnings
         if (this.state.status.length === 0) {
-          this.setStatus();
+          this.getStatus();
         }
       });
   },
 
-  setStatus: function () {
+  getStatus: function () {
     let statuses = [];
-    // check for warnings
 
-    // no new measurements in the last fetches? warning
-    if (this.state.count === 0) { statuses.push('noResults'); }
-    // last fetch finished over 720 seconds ago? warning
-    if (this.state.lastFinish > 720) { statuses.push('timeAgo'); }
+    // check for warnings
+    for (let s in statusMap) {
+      if (statusMap[s].warning && typeof statusMap[s].warning === 'function') {
+        if (statusMap[s].warning(this.state)) {
+          statuses.push(s);
+        }
+      }
+    }
 
     // no warning detected? it must be a success
     if (statuses.length === 0) { statuses.push('success'); }
@@ -104,7 +109,7 @@ var StatusFetch = React.createClass({
     );
   },
 
-  renderFetchSummary: function () { 
+  renderFetchSummary: function () {
     return (
       <div className='fold__body'>
         {this.state.fetches.map((f, i) => {
