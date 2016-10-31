@@ -16,6 +16,10 @@ const statusMap = {
   'red': {
     'classes': 'alert alert--danger',
     'message': 'The API is down'
+  },
+  'unknown': {
+    'classes': 'alert alert--info',
+    'message': 'API health unknown'
   }
 };
 
@@ -24,8 +28,7 @@ var StatusApi = React.createClass({
 
   getInitialState: function () {
     return {
-      'classes': 'alert alert--info',
-      'message': 'API health unknown'
+      'status': 'unknown'
     };
   },
 
@@ -43,12 +46,15 @@ var StatusApi = React.createClass({
       })
       .then(status => {
         if (status && statusMap[status]) {
-          this.setState(statusMap[status]);
+          this.setState({
+            'status': status
+          })
         }
       });
   },
 
   render: function () {
+    let s = statusMap[this.state.status]
     return (
       <section className='fold' id='status__api'>
         <div className='inner'>
@@ -56,8 +62,8 @@ var StatusApi = React.createClass({
             <h1 className='fold__title'>API health</h1>
           </header>
           <div className='fold__body'>
-            <p className={ this.state.classes }>
-              { this.state.message }
+            <p className={ s.classes }>
+              { s.message }
             </p>
           </div>
         </div>
