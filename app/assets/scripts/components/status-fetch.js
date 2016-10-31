@@ -133,7 +133,7 @@ var StatusFetch = React.createClass({
                 </div>
               </div>
             </article>
-            );
+          );
         })}
       </div>
     );
