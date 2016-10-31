@@ -5,14 +5,34 @@ import flatten from 'lodash.flatten';
 
 import config from '../config';
 
+const statusMap = {
+  'success': {
+    'message': 'Fetch seems to be working properly.',
+    'classes': 'alert alert--success'
+  },
+  'apiDown': {
+    'message': 'The API is down, can\'t determine the status of OpenAQ fetch',
+    'classes': 'alert alert--info'
+  },
+  'timeAgo': {
+    'message': 'The last fetch started more than 10 minutes ago.',
+    'classes': 'alert alert--warning'
+  },
+  'noResults': {
+    'message': 'The last five fetches yielded no results.',
+    'classes': 'alert alert--warning'
+  }
+};
+
 var StatusFetch = React.createClass({
   displayName: 'StatusFetch',
 
   getInitialState: function () {
     return {
       'count': null,
+      'status': [],
       'fetches': []
-    }
+    };
   },
 
   componentDidMount: function () {
@@ -21,35 +41,70 @@ var StatusFetch = React.createClass({
         return response.json();
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       })
       .then(json => {
-        let lastResults = json.results.slice(0,5)
+        let lastResults = json.results.slice(0, 5);
         this.setState({
-          'count': lastResults.map(f => f.count).reduce((a,b) => a + b),
+          'count': lastResults.map(f => f.count).reduce((a, b) => a + b),
           'lastFinish': moment(Date.now()).diff(moment(lastResults[0].timeStarted), 'seconds'),
           'fetches': lastResults.map(f => {
             return {
               'duration': moment(f.timeEnded).diff(moment(f.timeStarted), 'seconds'),
               'failures': flatten(f.results.map(s => {
-                let fails = []
+                let fails = [];
                 for (let fail in s.failures) {
-                  fails.push(`${s.sourceName} - ${fail} (${s.failures[fail]} failed)`)
+                  fails.push(`${s.sourceName} - ${fail} (${s.failures[fail]} failed)`);
                 }
-                return fails
+                return fails;
               })),
               'measurements': f.count,
               'sources': f.results.length,
               'timeAgo': moment(f.timeEnded).fromNow()
-            }
+            };
           })
-        })
+        });
       }).catch(err => {
-        console.log(err)
-      })
+        this.setState({
+          'status': ['apiDown']
+        });
+        console.log(err);
+      }).then(json => {
+        // if no status has been set thus far, check for warnings
+        if (this.state.status.length === 0) {
+          this.setStatus();
+        }
+      });
   },
 
-  renderFetchSummary: function () {
+  setStatus: function () {
+    let statuses = [];
+    // check for warnings
+
+    // no new measurements in the last fetches? warning
+    if (this.state.count === 0) { statuses.push('noResults'); }
+    // last fetch finished over 720 seconds ago? warning
+    if (this.state.lastFinish > 720) { statuses.push('timeAgo'); }
+
+    // no warning detected? it must be a success
+    if (statuses.length === 0) { statuses.push('success'); }
+
+    this.setState({
+      'status': statuses
+    });
+  },
+
+  renderStatus: function () {
+    return (
+      <ul className='alert-group'>
+        {this.state.status.map((s, i) => {
+          return <li className={statusMap[s].classes} key={i}>{statusMap[s].message}</li>;
+        })}
+      </ul>
+    );
+  },
+
+  renderFetchSummary: function () { 
     return (
       <div className='fold__body'>
         {this.state.fetches.map((f, i) => {
@@ -73,7 +128,7 @@ var StatusFetch = React.createClass({
                 </div>
               </div>
             </article>
-            )
+            );
         })}
       </div>
     );
@@ -87,6 +142,7 @@ var StatusFetch = React.createClass({
             <h1 className='fold__title'>Fetch health</h1>
           </header>
 
+          {this.renderStatus()}
           {this.renderFetchSummary()}
 
         </div>
