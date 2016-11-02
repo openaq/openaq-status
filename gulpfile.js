@@ -162,7 +162,7 @@ gulp.task('vendorScripts', function () {
 // ----------------------------------------------------------------------------//
 
 gulp.task('build', ['vendorScripts', 'javascript'], function () {
-  gulp.start(['html', 'fonts', 'extras'], function () {
+  gulp.start(['html', 'images', 'fonts', 'extras'], function () {
     return gulp.src('dist/**/*')
       .pipe($.size({title: 'build', gzip: true}))
       .pipe(exit());
@@ -209,6 +209,18 @@ gulp.task('html', ['styles'], function () {
     .pipe($.if(/\.(css|js)$/, rev()))
     .pipe(revReplace())
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('images', function () {
+  return gulp.src(['app/assets/graphics/**/*', OPENAQ_ADDONS.graphicsPath + '/**/*'])
+    .pipe($.cache($.imagemin([
+      $.imagemin.jpegtran({progressive: true}),
+      $.imagemin.optipng({optimizationLevel: 5}),
+      // don't remove IDs from SVGs, they are often used
+      // as hooks for embedding and styling
+      $.imagemin.svgo({plugins: [{cleanupIDs: false}]})
+    ])))
+    .pipe(gulp.dest('dist/assets/graphics'));
 });
 
 gulp.task('fonts', function () {
