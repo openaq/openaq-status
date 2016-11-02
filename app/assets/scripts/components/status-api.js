@@ -11,11 +11,11 @@ const statusMap = {
   },
   'orange': {
     'classes': 'alert alert--warning',
-    'message': 'Something\'s not right'
+    'message': `We're seeing some slow down in response times`
   },
   'red': {
     'classes': 'alert alert--danger',
-    'message': 'The API is down'
+    'message': `We're seeing significant slow down in response times`
   },
   'unknown': {
     'classes': 'alert alert--info',

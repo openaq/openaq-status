@@ -15,14 +15,14 @@ const statusMap = {
     'classes': 'alert alert--info'
   },
   'timeAgo': {
-    'message': 'The last fetch started more than 10 minutes ago.',
+    'message': 'The last fetch started more than 12 minutes ago.',
     'classes': 'alert alert--warning',
     warning (state) { return state.lastFinish > 720; }
   },
   'noResults': {
-    'message': 'The last five fetches yielded no results.',
+    'message': 'At least one of the last five fetches yielded no result.',
     'classes': 'alert alert--warning',
-    warning (state) { return state.count === 0; }
+    warning (state) { return state.fetches.some(f => f.measurements === 0); }
   }
 };
 
