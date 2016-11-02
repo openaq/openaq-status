@@ -1,0 +1,18 @@
+/* ==========================================================================
+   Global: Cards
+   ========================================================================== */
+
+.card {
+  margin-bottom: 2rem;
+  dt {
+    color: $base-font-color;
+    font-weight: $base-font-bold;
+    margin-top: $global-spacing;
+    }
+  dd {
+    color: rgba($base-font-color, 0.8);
+  }
+  &__subtitle {
+    font-size: 0.75rem;
+  }
+}

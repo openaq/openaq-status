@@ -47,7 +47,7 @@
     "envify": "^3.4.1",
     "eslint": "^3.0.1",
     "eslint-config-standard": "^6.0.0-beta",
-    "eslint-plugin-promise": "^2.0.0",
+    "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-react": "^5.2.2",
     "eslint-plugin-standard": "^2.0.0",
     "gulp": "^3.9.1",
@@ -76,6 +76,10 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.9.1",
+    "del": "^2.2.2",
+    "lodash.defaultsdeep": "^4.6.0",
+    "lodash.flatten": "^4.4.0",
+    "moment": "^2.15.2",
     "openaq-design-system": "git+https://github.com/openaq/openaq-design-system",
     "react": "^15.2.1",
     "react-dom": "^15.2.1"

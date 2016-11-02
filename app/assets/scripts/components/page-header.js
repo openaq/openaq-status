@@ -9,9 +9,10 @@ var PageHeader = React.createClass({
       <header className='page__header' role='banner'>
         <div className='inner'>
           <div className='page__headline'>
+            <h2 className='page__name'>Status</h2>
             <h1 className='page__title'><a href='http://openaq.org' title='Visit OpenAQ.org'>
               <img src='/assets/graphics/layout/logo.svg' alt='OpenAQ logotype' height='48' />
-              <span>OpenAQ</span> status
+              <span>OpenAQ</span>
             </a></h1>
           </div>
         </div>
