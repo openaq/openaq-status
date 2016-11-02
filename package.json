@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.9.1",
+    "lodash.defaultsdeep": "^4.6.0",
     "lodash.flatten": "^4.4.0",
     "moment": "^2.15.2",
     "openaq-design-system": "git+https://github.com/openaq/openaq-design-system",
