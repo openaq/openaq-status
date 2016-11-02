@@ -120,7 +120,7 @@ var StatusFetch = React.createClass({
                   <p className='card__subtitle'>Fetch finished <strong>{ f.timeAgo }</strong></p>
                 </header>
                 <div className='card__body'>
-                  <dl className='dl-horizontal'>
+                  <dl>
                     <dt>New measurements</dt>
                     <dd>{ f.measurements }</dd>
                     <dt>Sources reporting</dt>
