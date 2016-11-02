@@ -17,6 +17,10 @@ const statusMap = {
     'classes': 'alert alert--danger',
     'message': `We're seeing significant slow down in response times`
   },
+  'down': {
+    'classes': 'alert alert--danger',
+    'message': `Can't connect to the API`
+  },
   'unknown': {
     'classes': 'alert alert--info',
     'message': 'API health unknown'
@@ -35,14 +39,19 @@ var StatusApi = React.createClass({
   componentDidMount: function () {
     fetch(`${config.apiBase}/status`)
       .then(response => {
-        if (response.status > 300) {
-          return 'red';
-        } else if (response.json.results) {
-          return response.json.results.health_status || undefined;
+        if (response.status >= 200 && response.status < 300) {
+          return Promise.resolve(response);
+        } else {
+          return Promise.reject(new Error(response.statusText));
         }
       })
-      .catch(err => {
-        console.log(err);
+      .then(response => response.json())
+      .then(responseJSON => {
+        if (responseJSON.results) {
+          return responseJSON.results.healthStatus || undefined;
+        } else {
+          return 'unknown';
+        }
       })
       .then(status => {
         if (status && statusMap[status]) {
@@ -50,6 +59,12 @@ var StatusApi = React.createClass({
             'status': status
           });
         }
+      })
+      .catch(err => {
+        this.setState({
+          'status': 'down'
+        });
+        console.log(err);
       });
   },
 
