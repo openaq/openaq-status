@@ -1,16 +1,25 @@
 language: node_js
 node_js:
-- '4'
+- '6'
 env:
   global:
-  - PRODUCTION_BRANCH=publish
+  - DEPLOY_BRANCH=master
 cache:
   directories:
   - node_modules
 before_install:
 - chmod +x ./.build_scripts/lint.sh
 script:
-# - npm test
-# - ./.build_scripts/lint.sh
 - npm run build
 deploy:
+  provider: s3
+  access_key_id: AKIAJHJ63K2YKE3D7D2A
+  secret_access_key:
+    secure: OLzqvtnqyCj065H1yFmhuPFZSROKdIVbQU8qHSUb1dr16ZkMDTk0DdcAAUxyN+yULHXavKKMMcSCVqfI4JMbqqnDJ9VulrRsDgsCCh3TEQwuSXeSpWyvFcc942uzb1svA9Rc4yVnblIKNiStl3fn+IRUDrquN6hxXtPSWw41Z7xR6aRRFw0DFgqE2cah1aDoceQ2GZFOO9MQY7GEt6IBSO4PTRLjpldUI0KxxY3bWr2214EMVWrUMcxi7ovRWTTa/uXDtt5VhfoNjm5JhlhIjZ7HrTZU3Zt16cUe4qE8E55fAXK0OsXQz8WAORMUkgqdezJ6kx8iJ2yfFKIOBnkX22mtylzjEYp+Fg7kHCpb+wDi6pXJkhYUfcPdrblqMRCFcgTrrJ5wPZUvha6uuNtgJWEHH2moLeAIoZsVR7WeNLOBrFcGb+yvKpT7GYrBeujTHlPC1Po4WJ1A3AJddFSJQZoEf2e/2hC45XeoVDIHbK0cS+l+mNx6tNLyaXoXA18nGbOSWAcZkWGMbbXYx15MePk8M25ZZMZWkr+0unjCZcjThsiUJmyRbdyIPzz8NxrwI+lJYBBSp18xin4hZuXXFx9+QWADpPDgTxpsYNDU3Fs69//7MR/Zru/bD8DWcSs7thDQuMm0FtjSdrPTeK4pOjTr+HaHlBPRNgz3xQmpVww=
+  bucket: status.openaq.org
+  local-dir: dist
+  skip-cleanup: true
+  acl: public_read
+  on:
+    repo: openaq/openaq-status
+    branch: ${DEPLOY_BRANCH}
