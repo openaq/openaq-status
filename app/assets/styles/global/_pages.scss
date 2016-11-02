@@ -45,6 +45,7 @@ html {
 .page__headline {
   float: left;
   padding: 0.625rem 0;
+  @include col(12/12);
 }
 
 .page__title {
@@ -53,6 +54,9 @@ html {
   font-weight: $base-font-bold;
   text-transform: uppercase;
   margin: 0;
+  float: left;
+  position: absolute;
+  top: $global-spacing;
 
   a {
     display: inline-block;
@@ -63,6 +67,12 @@ html {
       @extend .visually-hidden;
     }
   }
+}
+
+.page__name {
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: $global-spacing;
 }
 
 
