@@ -38,7 +38,7 @@ var StatusFetch = React.createClass({
   },
 
   componentDidMount: function () {
-    fetch(`${config.apiBase}${config.apiVersion}/fetches`)
+    fetch(`${config.apiBase}${config.apiVersion}/fetches?k=${new Date().getTime()}`)
       .then(response => {
         return response.json();
       })

@@ -37,7 +37,7 @@ var StatusApi = React.createClass({
   },
 
   componentDidMount: function () {
-    fetch(`${config.apiBase}/status`)
+    fetch(`${config.apiBase}/status?k=${new Date().getTime()}`)
       .then(response => {
         if (response.status >= 200 && response.status < 300) {
           return Promise.resolve(response);
