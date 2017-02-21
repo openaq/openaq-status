@@ -1,5 +1,5 @@
 # OpenAQ Status Page
-A status page for the OpenAQ project, monitoring critical components of the infrastructure.
+A status page for the OpenAQ project, monitoring critical components of the infrastructure. The page is live on https://status.openaq.org.
 
 ## Development environment
 To set up the development environment for this website, you'll need to install the following on your system:
