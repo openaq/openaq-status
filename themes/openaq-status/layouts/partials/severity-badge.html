@@ -1,0 +1,13 @@
+{{ $severity := .Params.severity }}
+{{ $icon := ""}}
+{{ $alt := ""}}
+{{ if eq $severity "high"}}
+    {{ $icon = "svg/error-warning-fill-down.svg" }}
+{{ else if eq $severity "medium"}}
+    {{ $icon = "svg/error-warning-fill-intermittent.svg" }}
+{{ else if eq $severity "info"}}
+    {{ $icon = "svg/info.svg" }}
+{{ else }}
+    {{ $icon = "svg/info.svg" }}
+{{end}}
+<img src="{{ $icon | relURL }}" class="severity-badge" alt="{{$alt}}">

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" dir="{{ .Site.Language.LanguageDirection | default "ltr" }}">
+<head>
+  <title>OpenAQ Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+  name="description"
+  content="OpenAQ status page">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+  {{ template "_internal/google_analytics.html" . }}
+  {{ template "_internal/google_analytics_async.html" . }}
+
+  {{ template "_internal/opengraph.html" . }}
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ "favicon-96x96.png" | relURL }}" />
+
+  {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+  {{ $style := resources.Get "sass/main.scss" | resources.ToCSS $options }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+</head>
+<body>
+  {{ partial "header" . }}
+  <main class="main">
+    {{ template "main" . }}
+  </main>
+  {{ template "script" . }}
+</body>
+
+</html>

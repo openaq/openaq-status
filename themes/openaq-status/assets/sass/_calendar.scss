@@ -1,0 +1,44 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 160px;
+    width: 180px;
+}
+
+.calendar {
+    display: flex;
+    justify-content: center;
+    width: 155px;
+    flex-wrap: wrap;
+}
+
+
+.month-label {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+
+.day {
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+
+    &--operational {
+        background-color: $operational;
+    }
+    
+    &--intermittent {
+        background-color: $intermittent;
+    }
+    
+    &--down {
+        background-color: $down;
+    }
+    
+    &--no-data {
+        background-color: $no-data;
+    }
+}

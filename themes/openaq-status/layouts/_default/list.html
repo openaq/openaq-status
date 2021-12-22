@@ -1,0 +1,195 @@
+{{ define "main" }}
+    <div class="container">
+    <div class="card">
+      <div class="status-header js-status-header">
+      </div>
+      <ul class="card-list">
+          <li class="card-list__item">
+              <span>API Requests</span>
+              <div class="status-badge js-status-badge"></div>
+          </li>
+      </ul>
+  </div>
+  <div class="card">
+    <div class="card__header">
+        API status history
+    </div>
+    <div class="card__body">
+      <div class="status-history">
+        <div class="calendar-container">
+          <div class="month-label js-month-label"></div>
+          <div class="calendar js-calendar">
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+          </div>
+        </div>
+        <div class="calendar-container">
+          <div class="month-label js-month-label"></div>
+          <div class="calendar js-calendar">
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+          </div>
+        </div>
+        <div class="calendar-container">
+          <div class="month-label js-month-label"></div>
+          <div class="calendar js-calendar">
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+            <div class="day"></div>
+          </div>
+        </div>
+      </div>
+      <div class="legend-container">
+        <ul class="legend">
+            <li class="legend__item"><div class="legend__item-color legend__item-color--operational"></div> Operational</li>
+            <li class="legend__item"><div class="legend__item-color legend__item-color--intermittent"></div> Intermittent</li>
+            <li class="legend__item"><div class="legend__item-color legend__item-color--down"></div> Down</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card__header">
+        <span>Incident History</span>
+    </div>
+    {{if eq (len (where .Site.RegularPages "Section" "==" "incident")) 0}}
+    <div class="card-list--empty">
+      No incidents  
+    </div>
+      
+    {{ else }}
+    {{ range where .Site.RegularPages "Section" "incident"  }}
+    <ul class="card-list">
+        <li class="card-list__item">
+            <span class="incident">{{.Date.Format "2006-01-02"}} — {{partial "severity-badge" . }} <span class="incident-title">{{ .Title }}</span></span><a href="{{.Permalink}}">read more...</a>
+        </li>
+    </ul>
+    {{ end }}
+  {{ end }}
+    </div>
+</div>
+{{ end }}
+{{ define "script" }}
+{{ $js := resources.Get "js/index.js" | js.Build | resources.Minify }}
+
+<script src="{{ $js.RelPermalink }}"></script>
+{{ end }}
