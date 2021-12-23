@@ -1,0 +1,12 @@
+baseURL = 'https://openaqstatus.org/'
+languageCode = 'en-us'
+title = 'OpenAQ Status'
+theme = "openaq-status"
+googleAnalytics = 'G-NCC9RYL0G3'
+
+[params]
+  description = 'OpenAQ API status page'
+  images = ['default-meta-image.jpg']
+
+[permalinks]
+  incident = '/:title/'
