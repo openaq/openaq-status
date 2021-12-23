@@ -97,13 +97,13 @@
     let mostRecentHistoricDate;
 
     function getData() {
-        fetch('http://localhost:8003/historic').then(res => res.json()).then(data => {
+        fetch('https://api.openaqstatus.org/historic').then(res => res.json()).then(data => {
             if (data.monthlyAvgs[data.monthlyAvgs.length - 1].date != mostRecentHistoricDate) {
                 updateCalendars(data);
                 mostRecentHistoricDate = data.monthlyAvgs[data.monthlyAvgs.length - 1].date;
             }
         })
-        fetch('http://localhost:8003/current').then(res => res.json()).then(data => {
+        fetch('https://api.openaqstatus.org/current').then(res => res.json()).then(data => {
             if (data.lastUpdated != lastUpdated) {
                 updateStatus(data);
                 lastUpdated = data.lastUpdated;

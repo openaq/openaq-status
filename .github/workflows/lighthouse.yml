@@ -1,0 +1,12 @@
+name: lighthouse
+on: [push]
+jobs:
+  lighthouseci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: peaceiris/actions-hugo@v2
+      - run: npm install && npm install -g @lhci/cli@0.8.x
+      - run: hugo --minify
+      - run: lhci autorun
