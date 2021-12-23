@@ -12,6 +12,6 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - run: npm install && npm install -g @lhci/cli@0.8.x
+      - run: npm install -g @lhci/cli@0.8.x
       - run: hugo --minify
       - run: lhci autorun
