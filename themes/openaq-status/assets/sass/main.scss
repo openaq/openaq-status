@@ -3,12 +3,16 @@
 @import 'tooltip';
 @import 'calendar';
 
-html body {
+
+
+body,
+html {
     margin: 0;
     padding: 0;
 }
 
 * {
+    box-sizing: border-box;
     font-family: 'Oxygen', sans-serif;
 }
 
@@ -34,6 +38,12 @@ html body {
 }
 
 
+@media only screen and (max-width: 600px) {
+    .page-title {
+        font-size: 1.7em;
+    }
+}
+
 
 .left {
     display: flex;
@@ -43,8 +53,6 @@ html body {
 .logo {
     width: 72px;
 }
-
-
 
 .main {
     display: flex;
@@ -137,7 +145,7 @@ html body {
 .legend__item {
     margin: 5px;
     display: flex;
-    flex: 0 1 auto; /* Default */
+    flex: 0 1 auto;
     list-style-type: none;
     align-items: center;
 }
