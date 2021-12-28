@@ -43,17 +43,17 @@
         resetBadge(statusBadge);
         if (data.status == "operational") {
             statusHeader.classList.add('status-header--operational')
-            statusHeader.innerText = 'All Services operational';
+            statusHeader.innerText = 'All Services Operational';
             statusBadge.classList.add('status-badge--operational');
         }    
         if (data.status == "intermittent") {
             statusHeader.classList.add('status-header--intermittent')
-            statusHeader.innerText = 'Inermittent outages';
+            statusHeader.innerText = 'Inermittent Outages';
             statusBadge.classList.add('status-badge--intermittent');
         }  
         if (data.status == "down") {
             statusHeader.classList.add('status-header--down')
-            statusHeader.innerText = 'All Services down';
+            statusHeader.innerText = 'All Services Down';
             statusBadge.classList.add('status-badge--down');
         }  
     }
@@ -78,7 +78,9 @@
             const tooltip = document.createElement('div');
             const tooltipArrow = document.createElement('i');
             day.classList.add('tooltip');
-            tooltip.innerHTML = `<p>${date.toLocaleDateString('en-US')} - ${data[i].status}</p> ${tooltipArrow.outerHTML}`;
+            const status = data[i].status;
+            const statusCapitalized = `${status[0].toUpperCase()}${status.slice(1)}`;
+            tooltip.innerHTML = `<p>${date.toLocaleDateString('en-US')} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
             tooltip.classList.add('top')
             day.appendChild(tooltip)
             if (data[i].status == 'operational') {
