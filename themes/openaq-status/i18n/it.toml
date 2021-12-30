@@ -1,0 +1,18 @@
+[status]
+  other = 'Stato'
+[api-requests]
+  other = 'API Requests'
+[api-status-history]
+  other = "Storia dello stato dell'API"
+[operational]
+  other = 'Operational'
+[intermittent]
+  other = 'Intermittente'
+[down]
+  other = 'Down'
+[incident-history]
+  other = 'Incident History'
+[no-incidents]
+  other = 'No incidents'
+[read-more]
+  other = 'Read more...'

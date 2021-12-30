@@ -2,7 +2,7 @@
 @import 'card';
 @import 'tooltip';
 @import 'calendar';
-
+@import 'footer';
 
 
 body,
@@ -73,7 +73,7 @@ html {
 
 .status-header {
     display: flex;
-    height: 30px;
+    height: 50px;
     padding: 10px 20px;
     align-items: center;
 
@@ -151,10 +151,9 @@ html {
 }
 
 .legend__item-color {
-    height: 15px;
-    width: 15px;
-    margin: 5px;
-
+    height: $day-size;
+    width: $day-size;
+    margin: $day-size-margin;
 
     &--operational {
         background-color: $operational;
@@ -166,5 +165,15 @@ html {
 
     &--down {
         background-color: $down;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .legend__item-color {
+        height: $day-size-sm;
+        width: $day-size-sm;
+        margin: $day-size-margin-sm;
     }
 }

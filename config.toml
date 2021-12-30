@@ -10,3 +10,16 @@ googleAnalytics = 'G-NCC9RYL0G3'
 
 [permalinks]
   incident = '/:title/'
+
+defaultContentLang = 'en'
+
+[languages]
+  [languages.en]
+    contentDir = "content/en"
+    languageName = "English"
+  [languages.es]
+    contentDir = "content/es"
+    languageName = "Español"
+  [languages.it]
+    contentDir = "content/it"
+    languageName = "Italiano"
