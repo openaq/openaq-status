@@ -1,6 +1,10 @@
 import langs from './i18n';
 //lang set globally in previous script tag
 {
+
+
+    const locale = Intl.NumberFormat().resolvedOptions().locale;
+
     function updateCalendars(data) {
         const d = new Date();
         const d1 = new Date()
@@ -81,7 +85,7 @@ import langs from './i18n';
             day.classList.add('tooltip');
             const status = data[i].status;
             const statusCapitalized = `${status[0].toUpperCase()}${status.slice(1)}`;
-            tooltip.innerHTML = `<p>${date.toLocaleDateString('en-US')} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
+            tooltip.innerHTML = `<p>${date.toLocaleDateString(locale)} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
             tooltip.classList.add('top')
             day.appendChild(tooltip)
             if (data[i].status == 'operational') {

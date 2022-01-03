@@ -7,7 +7,7 @@ const langs = {
         "August","September","October","November","December"]
     },
     "es": {
-        "allServicesOperational":"Todos los servicios operativos",
+        "allServicesOperational":"Todos los sistemas funcionan",
         "intermittentOutages":"Intermittent Outages",
         "allServicesDown":"All Services Down",
         "months": ["enero","febrero","marzo","abril","mayo","junio","julio",

@@ -1,2 +1,18 @@
 [status]
   other = 'Condición'
+[api-requests]
+  other = 'Llamadas a la API'
+[api-status-history]
+  other = "Historia de la condición de API"
+[operational]
+  other = 'Funciona'
+[intermittent]
+  other = 'Intermitente'
+[down]
+  other = 'Se cayó el sistema'
+[incident-history]
+  other = 'La historia de incidentes'
+[no-incidents]
+  other = 'No hay incidentes'
+[read-more]
+  other = 'Read more...'
