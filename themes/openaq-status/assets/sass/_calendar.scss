@@ -9,7 +9,7 @@
 .calendar {
     display: flex;
     justify-content: center;
-    width: 155px;
+    width: $calendar-width;
     flex-wrap: wrap;
 }
 
@@ -22,8 +22,8 @@
 
 
 .day {
-    width: 16px;
-    height: 16px;
+    width: $day-size;
+    height: $day-size;
     margin: 2px;
     cursor: pointer;
 
@@ -50,20 +50,20 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 80px;
-        width: 90px;
+        height: $calendar-width-sm + 15px;
+        width: $calendar-width-sm + 10px;
     }
 
     .calendar {
         display: flex;
         justify-content: center;
-        width: 80px;
+        width: $calendar-width-sm;
         flex-wrap: wrap;
     }
 
     .day {
-        width: 8px;
-        height: 8px;
+        width: $day-size-sm;
+        height: $day-size-sm;
         margin: 1px;
     }
   }

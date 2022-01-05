@@ -1,4 +1,10 @@
+import langs from './i18n';
+//lang set globally in previous script tag
 {
+
+
+    const locale = Intl.NumberFormat().resolvedOptions().locale;
+
     function updateCalendars(data) {
         const d = new Date();
         const d1 = new Date()
@@ -24,9 +30,9 @@
     }
 
     function resetHeader(statusHeader) {
-        statusHeader.classList.remove('card__header--operational')
-        statusHeader.classList.remove('card__header--intermittent')
-        statusHeader.classList.remove('card__header--down')
+        statusHeader.classList.remove('status-header--operational')
+        statusHeader.classList.remove('status-header--intermittent')
+        statusHeader.classList.remove('status-header--down')
         statusHeader.innerText = '';
     }
 
@@ -43,12 +49,12 @@
         resetBadge(statusBadge);
         if (data.status == "operational") {
             statusHeader.classList.add('status-header--operational')
-            statusHeader.innerText = 'All Services Operational';
+            statusHeader.innerText = langs[lang].allServicesOperational;
             statusBadge.classList.add('status-badge--operational');
         }    
         if (data.status == "intermittent") {
             statusHeader.classList.add('status-header--intermittent')
-            statusHeader.innerText = 'Inermittent Outages';
+            statusHeader.innerText = 'Intermittent Outages';
             statusBadge.classList.add('status-badge--intermittent');
         }  
         if (data.status == "down") {
@@ -59,8 +65,7 @@
     }
 
     function setMonthNames(months) {
-        const monthNames = ["January","February","March","April","May","June","July",
-        "August","September","October","November","December"];
+        const monthNames = langs[lang].months;
         const monthLabels = document.querySelectorAll('.js-month-label');
         for (let i = 0; i < months.length; i ++) {
             monthLabels[i].innerText = monthNames[months[i]]
@@ -79,8 +84,8 @@
             const tooltipArrow = document.createElement('i');
             day.classList.add('tooltip');
             const status = data[i].status;
-            const statusCapitalized = `${status[0].toUpperCase()}${status.slice(1)}`;
-            tooltip.innerHTML = `<p>${date.toLocaleDateString('en-US')} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
+            const statusCapitalized = `${langs[lang][status]}`;
+            tooltip.innerHTML = `<p>${date.toLocaleDateString(locale)} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
             tooltip.classList.add('top')
             day.appendChild(tooltip)
             if (data[i].status == 'operational') {

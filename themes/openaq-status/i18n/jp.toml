@@ -1,0 +1,18 @@
+[status]
+  other = '状態'
+[api-requests]
+  other = 'API 要求'
+[api-status-history]
+  other = "API ステータス履歴"
+[operational]
+  other = '使用可能'
+[intermittent]
+  other = '間欠的使用'
+[down]
+  other = '使用不可'
+[incident-history]
+  other = '事故歴'
+[no-incidents]
+  other = '無事故'
+[read-more]
+  other = '次に続く'

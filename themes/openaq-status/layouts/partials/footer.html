@@ -1,0 +1,21 @@
+<footer class="footer">
+    <div class="footer__inner">
+        {{$lang := $.Site.Language.Lang}}
+        <img src="{{"svg/globe.svg" | relURL}}" alt="languages icon">
+        <ul class="lang-list">
+            {{ range $.Site.Home.AllTranslations }}
+            <li class="lang-list__item">
+                {{ if ne $lang .Language.Lang }}
+                <a href="{{ .Permalink }}">
+                {{ end }}
+                    <span class="lang-full-name">{{ .Language.LanguageName }}</span>
+                    <span class="lang-short-name">{{ .Language.Lang }}</span>
+                    
+                {{ if ne $lang .Language.Lang }}
+                </a>
+                {{ end }}
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</footer>
