@@ -1,0 +1,18 @@
+[status]
+  other = 'स्थिति'
+[api-requests]
+  other = 'एपीआई अनुरोध'
+[api-status-history]
+  other = "एपीआई स्थिति इतिहास"
+[operational]
+  other = 'चालू'
+[intermittent]
+  other = 'आंतरायिक'
+[down]
+  other = 'बंद'
+[incident-history]
+  other = 'घटना का इतिहास'
+[no-incidents]
+  other = 'कोई घटना नहीं है'
+[read-more]
+  other = 'अधिक जानकारी के लिए पढ़ें'

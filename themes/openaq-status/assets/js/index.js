@@ -84,7 +84,7 @@ import langs from './i18n';
             const tooltipArrow = document.createElement('i');
             day.classList.add('tooltip');
             const status = data[i].status;
-            const statusCapitalized = `${status[0].toUpperCase()}${status.slice(1)}`;
+            const statusCapitalized = `${langs[lang][status]}`;
             tooltip.innerHTML = `<p>${date.toLocaleDateString(locale)} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
             tooltip.classList.add('top')
             day.appendChild(tooltip)

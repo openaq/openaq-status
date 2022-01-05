@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    height: 80px;
+    width: 100vw;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+
+    &__inner {
+        display: flex;
+        flex: 1;
+        max-width: 1280px;
+        padding: 0 15px;
+    
+        &::after {
+            flex: 1;
+            content: '';
+        }
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .page-title {
+        font-size: 1.7em;
+    }
+}

@@ -17,9 +17,6 @@ defaultContentLang = 'en'
   [languages.en]
     contentDir = "content/en"
     languageName = "English"
-  [languages.es]
-    contentDir = "content/es"
-    languageName = "Español"
-  [languages.it]
-    contentDir = "content/it"
-    languageName = "Italiano"
+  [languages.hi]
+    contentDir = "content/hi"
+    languageName = "हिन्दी"

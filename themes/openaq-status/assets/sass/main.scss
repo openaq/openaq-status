@@ -2,6 +2,8 @@
 @import 'card';
 @import 'tooltip';
 @import 'calendar';
+@import 'legend';
+@import 'header';
 @import 'footer';
 
 
@@ -14,34 +16,6 @@ html {
 * {
     box-sizing: border-box;
     font-family: 'Oxygen', sans-serif;
-}
-
-.header {
-    display: flex;
-    height: 80px;
-    width: 100vw;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
-
-    &__inner {
-        display: flex;
-        flex: 1;
-        max-width: 1280px;
-        padding: 0 15px;
-    
-        &::after {
-            flex: 1;
-            content: '';
-        }
-    }
-}
-
-
-@media only screen and (max-width: 600px) {
-    .page-title {
-        font-size: 1.7em;
-    }
 }
 
 
@@ -57,7 +31,7 @@ html {
 .main {
     display: flex;
     justify-content: center;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 160px);
     background-color: #F6F7F7;
 }
 
@@ -126,54 +100,4 @@ html {
     margin: 5px;
     width: 24px;
     height: 24px;
-}
-
-.legend-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.legend {
-    display: flex;
-    align-items: stretch; 
-    list-style: none;
-    margin: 0 0 15px 0;
-    padding: 0;
-}
-
-.legend__item {
-    margin: 5px;
-    display: flex;
-    flex: 0 1 auto;
-    list-style-type: none;
-    align-items: center;
-}
-
-.legend__item-color {
-    height: $day-size;
-    width: $day-size;
-    margin: $day-size-margin;
-
-    &--operational {
-        background-color: $operational;
-    }
-
-    &--intermittent {
-        background-color: $intermittent;
-    }
-
-    &--down {
-        background-color: $down;
-    }
-}
-
-
-@media only screen and (max-width: 600px) {
-
-    .legend__item-color {
-        height: $day-size-sm;
-        width: $day-size-sm;
-        margin: $day-size-margin-sm;
-    }
 }
