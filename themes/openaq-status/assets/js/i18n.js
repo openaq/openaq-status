@@ -38,6 +38,16 @@ const langs = {
         "intermittentOutages":"आंतरायिक आउटेज",
         "allServicesDown":"सभी सेवाएं बंद",
         "months": ["जनवरी","फ़रवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितंबर","अक्टूबर","नवंबर","दिसंबर"]
+    },
+    "jp": {
+        "operational":"使用可能",
+        "intermittent":"間欠的使用",
+        "down":"使用不可",
+        "no data":"データ無し",
+        "allServicesOperational":"全使用",
+        "intermittentOutages":"間欠使用",
+        "allServicesDown":"不作動",
+        "months": ["１月","２月","3月","４月","５月","６月","７月","８月","９月","１０月","１１月","１２月"]
     }
 }
 

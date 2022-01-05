@@ -20,3 +20,6 @@ defaultContentLang = 'en'
   [languages.hi]
     contentDir = "content/hi"
     languageName = "हिन्दी"
+  [languages.jp]
+    contentDir = "content/jp"
+    languageName = "日本語"
