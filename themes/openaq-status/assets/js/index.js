@@ -1,3 +1,5 @@
+import sparkline from "@fnando/sparkline"; 
+
 import langs from './i18n';
 //lang set globally in previous script tag
 {
@@ -5,6 +7,22 @@ import langs from './i18n';
 
     const locale = Intl.NumberFormat().resolvedOptions().locale;
 
+
+    const latencyData = [
+        334.88927542682933,  282.2285121000001,
+        277.25652529875526, 313.27633768464716,
+         387.3416669999999,  321.9994582685952,
+        363.45742915481134,  276.4172884605809,
+         294.7158107857143,  288.7977031363638,
+         278.8792257740585,  294.4576054564315,
+         384.1272662384937, 357.17573612970733,
+         317.6760689776782, 700, 1200
+      ];
+
+
+    const sparklineElem = document.querySelector(".sparkline");
+    
+    
     function updateCalendars(data) {
         const d = new Date();
         const d1 = new Date()
@@ -64,6 +82,11 @@ import langs from './i18n';
         }  
     }
 
+
+    function updateLatencySparkline(data) {
+        sparkline(sparklineElem, data);
+    }
+
     function setMonthNames(months) {
         const monthNames = langs[lang].months;
         const monthLabels = document.querySelectorAll('.js-month-label');
@@ -102,6 +125,7 @@ import langs from './i18n';
 
     let lastUpdated;
     let mostRecentHistoricDate;
+    let latencyHistory;
 
     function getData() {
         fetch('https://api.openaqstatus.org/historic').then(res => res.json()).then(data => {
@@ -114,6 +138,12 @@ import langs from './i18n';
             if (data.lastUpdated != lastUpdated) {
                 updateStatus(data);
                 lastUpdated = data.lastUpdated;
+            }
+        })
+        fetch('https://api.openaqstatus.org/latency').then(res => res.json()).then(data => {
+            if (data.latencyHistory != latencyHistory) {
+                updateLatencySparkline(data);
+                latencyHistory = data.latencyHistory;
             }
         })
     } 

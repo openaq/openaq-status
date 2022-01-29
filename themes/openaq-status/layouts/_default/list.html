@@ -8,6 +8,13 @@
               <span>{{ i18n "api-requests" }}</span>
               <div class="status-badge js-status-badge"></div>
           </li>
+          <li class="card-list__item">
+              <span>Reponse Latency</span>
+              <div class="tooltip latency-chart">
+                <div class="top"> <p>avg. hourly latency - past 24 hours</p> <i></i></div>
+                <svg class="sparkline" width="100" height="20" stroke-width="1"></svg>
+              </div>
+          </li>
       </ul>
   </div>
   <div class="card">

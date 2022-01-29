@@ -1,0 +1,11 @@
+{
+  "name": "openaq-status",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/openaq/openaq-status.git",
+  "author": "Russ Biggs <russbiggs@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fnando/sparkline": "^0.3.10"
+  }
+}
