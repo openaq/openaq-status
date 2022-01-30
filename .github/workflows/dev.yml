@@ -17,10 +17,19 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Build
+      - name: Setup cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install JS
         run: | 
           npm install -g yarn \
-          yarn install \
+          yarn install
+
+      - name: Build
+        run: | 
           hugo --minify --baseUrl http://dev.openaq.org
 
       - uses: jakejarvis/s3-sync-action@master
