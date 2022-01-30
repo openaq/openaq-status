@@ -16,14 +16,14 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-          
+
       - name: Install JS
         run: | 
           npm install -g yarn \
           yarn install
 
       - name: Build
-        run: hugo --minify
+        run: hugo --minify --baseUrl http://dev.openaq.org
 
       - uses: jakejarvis/s3-sync-action@master
         with:

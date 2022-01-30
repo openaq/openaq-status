@@ -1,21 +1,26 @@
 <footer class="footer">
     <div class="footer__inner">
         {{$lang := $.Site.Language.Lang}}
-        <img src="{{"svg/globe.svg" | relURL}}" alt="languages icon">
-        <ul class="lang-list">
-            {{ range $.Site.Home.AllTranslations }}
-            <li class="lang-list__item">
-                {{ if ne $lang .Language.Lang }}
-                <a href="{{ .Permalink }}">
+        <div class="lang-section">
+            <img src="{{"svg/globe.svg" | relURL}}" alt="languages icon">
+            <ul class="lang-list">
+                {{ range $.Site.Home.AllTranslations }}
+                <li class="lang-list__item">
+                    {{ if ne $lang .Language.Lang }}
+                    <a href="{{ .Permalink }}">
+                    {{ end }}
+                        <span class="lang-full-name">{{ .Language.LanguageName }}</span>
+                        <span class="lang-short-name">{{ .Language.Lang }}</span>
+                        
+                    {{ if ne $lang .Language.Lang }}
+                    </a>
+                    {{ end }}
+                </li>
                 {{ end }}
-                    <span class="lang-full-name">{{ .Language.LanguageName }}</span>
-                    <span class="lang-short-name">{{ .Language.Lang }}</span>
-                    
-                {{ if ne $lang .Language.Lang }}
-                </a>
-                {{ end }}
-            </li>
-            {{ end }}
-        </ul>
+            </ul>
+        </div>
+        <a class="github-link" href="https://github.com/openaq/openaq-status">
+            Contribute on Github <img src="{{"svg/github.svg" | relURL}}" alt="">
+        </a>
     </div>
 </footer>

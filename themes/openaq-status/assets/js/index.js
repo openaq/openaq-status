@@ -87,6 +87,20 @@ import langs from './i18n';
         sparkline(sparklineElem, data);
     }
 
+    function updateLatencyScore(data) {
+        const lastValue = data.at(-1);
+        const latencyScoreElem = document.querySelector('.js-latency-score');
+        latencyScoreElem.classList.remove("latency-score--normal");
+        latencyScoreElem.classList.remove("latency-score--high");
+        if (lastValue > 500) {
+            latencyScoreElem.innerText = "High";
+            latencyScoreElem.classList.add("latency-score--high");
+        } else {
+            latencyScoreElem.innerText = "Normal";
+            latencyScoreElem.classList.add("latency-score--normal");
+        }
+    }
+
     function setMonthNames(months) {
         const monthNames = langs[lang].months;
         const monthLabels = document.querySelectorAll('.js-month-label');
@@ -142,7 +156,8 @@ import langs from './i18n';
         })
         fetch('https://api.openaqstatus.org/latency').then(res => res.json()).then(data => {
             if (data.latencyHistory != latencyHistory) {
-                updateLatencySparkline(data);
+                updateLatencySparkline(data.latencyHistory);
+                updateLatencyScore(data.latencyHistory);
                 latencyHistory = data.latencyHistory;
             }
         })

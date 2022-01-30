@@ -85,6 +85,18 @@ html {
 }
 
 
+.latency-score {
+    font-weight: bold;
+
+    &--normal {
+        color: $operational;
+    }
+
+    &--high {
+        color: $down;
+    }
+}
+
 .status-history {
     display: flex;
     justify-content: center;

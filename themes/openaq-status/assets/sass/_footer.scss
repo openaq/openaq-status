@@ -9,9 +9,19 @@
     &__inner {
         display: flex;
         flex: 1;
+        justify-content: space-between;
         max-width: 1280px;
         padding: 0 15px;
     }
+}
+
+
+.lang-section {
+    display: flex;
+}
+
+.github-link {
+    align-items: center;
 }
 
 .lang-list {

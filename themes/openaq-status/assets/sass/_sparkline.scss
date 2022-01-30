@@ -1,4 +1,4 @@
 .sparkline {
-    stroke: $dark-blue;
-    fill: none;
-  }
+    stroke: $blue;
+    fill: lighten($blue, 30%);
+}
