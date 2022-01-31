@@ -17,12 +17,6 @@ jobs:
           hugo-version: '0.89.2'
           extended: true
 
-      - name: Setup cache
-        uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
