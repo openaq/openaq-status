@@ -7,31 +7,31 @@ import langs from './i18n';
 
     const locale = Intl.NumberFormat().resolvedOptions().locale;
 
-
-    const latencyData = [
-        334.88927542682933,  282.2285121000001,
-        277.25652529875526, 313.27633768464716,
-         387.3416669999999,  321.9994582685952,
-        363.45742915481134,  276.4172884605809,
-         294.7158107857143,  288.7977031363638,
-         278.8792257740585,  294.4576054564315,
-         384.1272662384937, 357.17573612970733,
-         317.6760689776782, 700, 1200
-      ];
-
-
     const sparklineElem = document.querySelector(".sparkline");
     
     
     function updateCalendars(data) {
         const d = new Date();
         let month = d.getMonth();
+        console.log(month);
+
+        const d1 = new Date();
+        const d2 = new Date();
+        
+        let year = d.getFullYear();
         if (month == 0) {
             month = 12;
+            year = year - 1;
         }
-        const d1 = new Date();
+        d1.setFullYear(year);
+        d1.setDate(1);
         d1.setMonth(month - 1);
-        const d2 = new Date();
+        if (month == 1) {
+            month = 12;
+            year = year - 1;
+        }
+        d2.setDate(1);
+        d2.setFullYear(year);
         d2.setMonth(month - 2);
         const months = [
             d2.getMonth(),
