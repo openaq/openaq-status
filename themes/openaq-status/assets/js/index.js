@@ -25,10 +25,14 @@ import langs from './i18n';
     
     function updateCalendars(data) {
         const d = new Date();
-        const d1 = new Date()
-        d1.setMonth(d.getMonth() - 1);
-        const d2 = new Date()
-        d2.setMonth(d.getMonth() - 2);
+        let month = d.getMonth();
+        if (month == 0) {
+            month = 12;
+        }
+        const d1 = new Date();
+        d1.setMonth(month - 1);
+        const d2 = new Date();
+        d2.setMonth(month - 2);
         const months = [
             d2.getMonth(),
             d1.getMonth(),
