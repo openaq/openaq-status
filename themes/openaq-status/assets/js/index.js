@@ -27,7 +27,7 @@ import langs from './i18n';
         d1.setDate(1);
         d1.setMonth(month - 1);
         if (month == 1) {
-            month = 12;
+            month = 13;
             year = year - 1;
         }
         d2.setDate(1);
