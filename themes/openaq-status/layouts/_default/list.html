@@ -8,6 +8,13 @@
               <span>{{ i18n "api-requests" }}</span>
               <div class="status-badge js-status-badge"></div>
           </li>
+          <li class="card-list__item">
+              <div>API Response Latency — <span class="latency-score js-latency-score"></span></div>
+              <div class="tooltip latency-chart">
+                <div class="top"> <p>avg. hourly latency - past 24 hours</p> <i></i></div>
+                <svg class="sparkline" width="100" height="25" stroke-width="2"></svg>
+              </div>
+          </li>
       </ul>
   </div>
   <div class="card">
@@ -160,16 +167,16 @@
       </div>
       <div class="legend-container">
         <ul class="legend">
-            <li class="legend__item"><div class="legend__item-color legend__item-color--operational"></div> {{ i18n "operational" }}</li>
-            <li class="legend__item"><div class="legend__item-color legend__item-color--intermittent"></div> {{ i18n "intermittent" }}</li>
-            <li class="legend__item"><div class="legend__item-color legend__item-color--down"></div> {{ i18n "down" }}</li>
+            <li class="legend__item"><div class="legend__item-color legend__item-color--operational tooltip"><div class="top"> <p>100% successful test API responses</p> <i></i></div></div> {{ i18n "operational" }}</li>
+            <li class="legend__item"><div class="legend__item-color legend__item-color--intermittent tooltip"><div class="top"> <p>some unsuccessful test API responses</p> <i></i></div></div> {{ i18n "intermittent" }}</li>
+            <li class="legend__item"><div class="legend__item-color legend__item-color--down tooltip"><div class="top"> <p>0% successful test API responses</p> <i></i></div></div> {{ i18n "down" }}</li>
         </ul>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card__header">
-        <span>{{ i18n "incident-history" }}</span>
+    <div class="card__header incident-history-header">
+        <div></div><span>{{ i18n "incident-history" }}</span> <a href="/index.xml"><img src="{{"svg/rss.svg" | relURL}}" alt=""></a>
     </div>
     {{if eq (len (where .Site.RegularPages "Section" "==" "incident")) 0}}
     <div class="card-list--empty">

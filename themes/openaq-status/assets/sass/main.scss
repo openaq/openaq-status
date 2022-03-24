@@ -5,7 +5,8 @@
 @import 'legend';
 @import 'header';
 @import 'footer';
-
+@import 'sparkline';
+@import 'incident';
 
 body,
 html {
@@ -85,6 +86,18 @@ html {
 }
 
 
+.latency-score {
+    font-weight: bold;
+
+    &--normal {
+        color: $operational;
+    }
+
+    &--high {
+        color: $down;
+    }
+}
+
 .status-history {
     display: flex;
     justify-content: center;
@@ -94,6 +107,12 @@ html {
 
 .incident-title {
     font-weight: bold;
+}
+
+.incident-history-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
 }
 
 .severity-badge {

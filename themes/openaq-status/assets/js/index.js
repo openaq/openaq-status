@@ -1,3 +1,5 @@
+import sparkline from "@fnando/sparkline"; 
+
 import langs from './i18n';
 //lang set globally in previous script tag
 {
@@ -5,12 +7,32 @@ import langs from './i18n';
 
     const locale = Intl.NumberFormat().resolvedOptions().locale;
 
+    const sparklineElem = document.querySelector(".sparkline");
+    
+    
     function updateCalendars(data) {
         const d = new Date();
-        const d1 = new Date()
-        d1.setMonth(d.getMonth() - 1);
-        const d2 = new Date()
-        d2.setMonth(d.getMonth() - 2);
+        let month = d.getMonth();
+        console.log(month);
+
+        const d1 = new Date();
+        const d2 = new Date();
+        
+        let year = d.getFullYear();
+        if (month == 0) {
+            month = 12;
+            year = year - 1;
+        }
+        d1.setFullYear(year);
+        d1.setDate(1);
+        d1.setMonth(month - 1);
+        if (month == 1) {
+            month = 13;
+            year = year - 1;
+        }
+        d2.setDate(1);
+        d2.setFullYear(year);
+        d2.setMonth(month - 2);
         const months = [
             d2.getMonth(),
             d1.getMonth(),
@@ -43,6 +65,7 @@ import langs from './i18n';
     }
 
     function updateStatus(data) {
+        console.log(data)
         const statusHeader = document.querySelector('.js-status-header');
         const statusBadge = document.querySelector('.js-status-badge');
         resetHeader(statusHeader);
@@ -62,6 +85,25 @@ import langs from './i18n';
             statusHeader.innerText = 'All Services Down';
             statusBadge.classList.add('status-badge--down');
         }  
+    }
+
+
+    function updateLatencySparkline(data) {
+        sparkline(sparklineElem, data);
+    }
+
+    function updateLatencyScore(data) {
+        const lastValue = data.at(-1);
+        const latencyScoreElem = document.querySelector('.js-latency-score');
+        latencyScoreElem.classList.remove("latency-score--normal");
+        latencyScoreElem.classList.remove("latency-score--high");
+        if (lastValue > 1500) {
+            latencyScoreElem.innerText = "High";
+            latencyScoreElem.classList.add("latency-score--high");
+        } else {
+            latencyScoreElem.innerText = "Normal";
+            latencyScoreElem.classList.add("latency-score--normal");
+        }
     }
 
     function setMonthNames(months) {
@@ -84,7 +126,7 @@ import langs from './i18n';
             const tooltipArrow = document.createElement('i');
             day.classList.add('tooltip');
             const status = data[i].status;
-            const statusCapitalized = `${langs[lang][status]}`;
+            const statusCapitalized = langs[lang][status] || 'no data';
             tooltip.innerHTML = `<p>${date.toLocaleDateString(locale)} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
             tooltip.classList.add('top')
             day.appendChild(tooltip)
@@ -100,8 +142,8 @@ import langs from './i18n';
         }
     }
 
-    let lastUpdated;
     let mostRecentHistoricDate;
+    let latencyHistory;
 
     function getData() {
         fetch('https://api.openaqstatus.org/historic').then(res => res.json()).then(data => {
@@ -111,9 +153,14 @@ import langs from './i18n';
             }
         })
         fetch('https://api.openaqstatus.org/current').then(res => res.json()).then(data => {
-            if (data.lastUpdated != lastUpdated) {
-                updateStatus(data);
-                lastUpdated = data.lastUpdated;
+            updateStatus(data);
+            lastUpdated = data.lastUpdated;
+        })
+        fetch('https://api.openaqstatus.org/latency').then(res => res.json()).then(data => {
+            if (data.latencyHistory != latencyHistory) {
+                updateLatencySparkline(data.latencyHistory);
+                updateLatencyScore(data.latencyHistory);
+                latencyHistory = data.latencyHistory;
             }
         })
     } 
