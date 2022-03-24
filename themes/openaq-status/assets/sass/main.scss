@@ -6,6 +6,7 @@
 @import 'header';
 @import 'footer';
 @import 'sparkline';
+@import 'incident';
 
 body,
 html {
@@ -106,6 +107,12 @@ html {
 
 .incident-title {
     font-weight: bold;
+}
+
+.incident-history-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
 }
 
 .severity-badge {

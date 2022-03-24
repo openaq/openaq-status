@@ -65,6 +65,7 @@ import langs from './i18n';
     }
 
     function updateStatus(data) {
+        console.log(data)
         const statusHeader = document.querySelector('.js-status-header');
         const statusBadge = document.querySelector('.js-status-badge');
         resetHeader(statusHeader);
@@ -96,7 +97,7 @@ import langs from './i18n';
         const latencyScoreElem = document.querySelector('.js-latency-score');
         latencyScoreElem.classList.remove("latency-score--normal");
         latencyScoreElem.classList.remove("latency-score--high");
-        if (lastValue > 500) {
+        if (lastValue > 1500) {
             latencyScoreElem.innerText = "High";
             latencyScoreElem.classList.add("latency-score--high");
         } else {
@@ -125,7 +126,7 @@ import langs from './i18n';
             const tooltipArrow = document.createElement('i');
             day.classList.add('tooltip');
             const status = data[i].status;
-            const statusCapitalized = `${langs[lang][status]}`;
+            const statusCapitalized = langs[lang][status] || 'no data';
             tooltip.innerHTML = `<p>${date.toLocaleDateString(locale)} - ${statusCapitalized}</p> ${tooltipArrow.outerHTML}`;
             tooltip.classList.add('top')
             day.appendChild(tooltip)
@@ -141,7 +142,6 @@ import langs from './i18n';
         }
     }
 
-    let lastUpdated;
     let mostRecentHistoricDate;
     let latencyHistory;
 
@@ -153,10 +153,8 @@ import langs from './i18n';
             }
         })
         fetch('https://api.openaqstatus.org/current').then(res => res.json()).then(data => {
-            if (data.lastUpdated != lastUpdated) {
-                updateStatus(data);
-                lastUpdated = data.lastUpdated;
-            }
+            updateStatus(data);
+            lastUpdated = data.lastUpdated;
         })
         fetch('https://api.openaqstatus.org/latency').then(res => res.json()).then(data => {
             if (data.latencyHistory != latencyHistory) {

@@ -1,7 +1,9 @@
 <footer class="footer">
     <div class="footer__inner">
+        
         {{$lang := $.Site.Language.Lang}}
         <div class="lang-section">
+            {{ if gt (len $.Site.Languages ) 1 }}
             <img src="{{"svg/globe.svg" | relURL}}" alt="languages icon">
             <ul class="lang-list">
                 {{ range $.Site.Home.AllTranslations }}
@@ -18,6 +20,7 @@
                 </li>
                 {{ end }}
             </ul>
+            {{ end }}
         </div>
         <a class="github-link" href="https://github.com/openaq/openaq-status">
             Contribute on Github <img src="{{"svg/github.svg" | relURL}}" alt="">
