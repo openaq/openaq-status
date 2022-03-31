@@ -5,8 +5,35 @@
       </div>
       <ul class="card-list">
           <li class="card-list__item">
-              <span>{{ i18n "api-requests" }}</span>
-              <div class="status-badge js-status-badge"></div>
+              <span class="item-title">{{ i18n "api-requests" }}<div class="icon"><img src="/svg/chevron-down.svg" alt="" data-state="closed" class="expand-btn js-expand-btn"></div></span>
+              <div class="status-badge js-requests-status-badge"></div>
+          </li>
+          <li class="card-list__item--hidden js-endpoint-status js-v2-locations-card-list__item">
+            <span class="endpoint-title">/v2/locations</span>
+            <div class="status-badge js-v2-locations-status-badge"></div>
+          </li>
+          <li class="card-list__item--hidden js-endpoint-status js-v2-measurements-card-list__item">
+            <span class="endpoint-title">/v2/measurements</span>
+            <div class="status-badge js-v2-measurements-status-badge"></div>
+          </li>
+          <li class="card-list__item--hidden js-endpoint-status js-v2-latest-card-list__item">
+            <span class="endpoint-title">/v2/latest</span>
+            <div class="status-badge js-v2-latest-status-badge"></div>
+          </li>
+          <li class="card-list__item--hidden js-endpoint-status js-v2-parameters-card-list__item">
+            <span class="endpoint-title">/v2/parameters</span>
+            <div class="status-badge js-v2-parameters-status-badge"></div>
+          </li>
+          <li class="card-list__item--hidden js-endpoint-status js-v2-sources-card-list__item">
+            <span class="endpoint-title">/v2/sources</span>
+            <div class="status-badge js-v2-sources-status-badge"></div>
+          </li>
+          <li class="card-list__item">
+              <div>API Response Time — <span class="latency-score js-latency-score"></span></div>
+              <div class="tooltip latency-chart">
+                <div class="top"> <p>avg. hourly response time - past 24 hours</p> <i></i></div>
+                <svg class="sparkline" width="100" height="25" stroke-width="2"></svg>
+              </div>
           </li>
           <li class="card-list__item">
               <div>API Response Latency — <span class="latency-score js-latency-score"></span></div>
