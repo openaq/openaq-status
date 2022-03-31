@@ -190,6 +190,7 @@ import langs from './i18n';
     });    
 
 
+
     let mostRecentHistoricDate;
     let latencyHistory;
 
