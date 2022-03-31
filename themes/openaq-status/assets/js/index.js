@@ -67,7 +67,7 @@ import langs from './i18n';
     function updateStatus(data) {
         console.log(data)
         const statusHeader = document.querySelector('.js-status-header');
-        const statusBadge = document.querySelector('.js-status-badge');
+        const statusBadge = document.querySelector('.js-requests-status-badge');
         resetHeader(statusHeader);
         resetBadge(statusBadge);
         if (data.status == "operational") {
@@ -84,6 +84,19 @@ import langs from './i18n';
             statusHeader.classList.add('status-header--down')
             statusHeader.innerText = 'All Services Down';
             statusBadge.classList.add('status-badge--down');
+        }
+        for (const endpoint of data.endpoints) {
+            const [_, version, path] = endpoint.name.split('\/');
+            const badgeElem = document.querySelector(`.js-${version}-${path}-status-badge`);
+            if (data.status == "operational") {
+                badgeElem.classList.add('status-badge--operational');
+            }    
+            if (data.status == "intermittent") {
+                badgeElem.classList.add('status-badge--intermittent');
+            }  
+            if (data.status == "down") {
+                badgeElem.classList.add('status-badge--down');
+            }
         }  
     }
 
@@ -141,6 +154,39 @@ import langs from './i18n';
             }
         }
     }
+
+
+    function toggleEndpointCards() {
+        const endpointStatuses = document.querySelectorAll('.js-endpoint-status');
+        const expandButton = document.querySelector('.js-expand-btn');
+        const state = expandButton.getAttribute('data-state');
+        if (state == "open") {
+            for (const endpointStatus of endpointStatuses) {
+                endpointStatus.classList.remove('card-list__item--hidden');
+                endpointStatus.classList.add('card-list__item');
+            }
+        } else {
+            for (const endpointStatus of endpointStatuses) {
+                endpointStatus.classList.add('card-list__item--hidden');
+                endpointStatus.classList.remove('card-list__item');
+            }
+        }
+    }
+
+
+    const expandButton = document.querySelector('.js-expand-btn');
+    expandButton.addEventListener('click', e => {
+        const target = e.target;
+        const state = target.getAttribute('data-state');
+        if (state == 'closed') {
+            target.src = '/svg/chevron-up.svg';
+            target.setAttribute('data-state', 'open');
+        } else {
+            target.src = '/svg/chevron-down.svg';
+            target.setAttribute('data-state', 'closed');
+        }
+        toggleEndpointCards();
+    });    
 
     let mostRecentHistoricDate;
     let latencyHistory;
