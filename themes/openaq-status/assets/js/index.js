@@ -156,6 +156,7 @@ import langs from './i18n';
     }
 
 
+
     function toggleEndpointCards() {
         const endpointStatuses = document.querySelectorAll('.js-endpoint-status');
         const expandButton = document.querySelector('.js-expand-btn');
@@ -187,6 +188,7 @@ import langs from './i18n';
         }
         toggleEndpointCards();
     });    
+
 
     let mostRecentHistoricDate;
     let latencyHistory;
