@@ -101,21 +101,21 @@ import langs from './i18n';
     }
 
 
-    function updateLatencySparkline(data) {
+    function updateResponseTimeSparkline(data) {
         sparkline(sparklineElem, data);
     }
 
-    function updateLatencyScore(data) {
+    function updateResponseTimeScore(data) {
         const lastValue = data.at(-1);
-        const latencyScoreElem = document.querySelector('.js-latency-score');
-        latencyScoreElem.classList.remove("latency-score--normal");
-        latencyScoreElem.classList.remove("latency-score--high");
+        const responseTimeScoreElem = document.querySelector('.js-response-time-score');
+        responseTimeScoreElem.classList.remove("response-time-score--normal");
+        responseTimeScoreElem.classList.remove("response-time-score--high");
         if (lastValue > 7500) {
-            latencyScoreElem.innerText = "High";
-            latencyScoreElem.classList.add("latency-score--high");
+            responseTimeScoreElem.innerText = "High";
+            responseTimeScoreElem.classList.add("response-time-score--high");
         } else {
-            latencyScoreElem.innerText = "Normal";
-            latencyScoreElem.classList.add("latency-score--normal");
+            responseTimeScoreElem.innerText = "Normal";
+            responseTimeScoreElem.classList.add("response-time-score--normal");
         }
     }
 
@@ -192,7 +192,7 @@ import langs from './i18n';
 
 
     let mostRecentHistoricDate;
-    let latencyHistory;
+    let responseTimeHistory;
 
     function getData() {
         fetch('https://api.openaqstatus.org/historic').then(res => res.json()).then(data => {
@@ -205,11 +205,11 @@ import langs from './i18n';
             updateStatus(data);
             lastUpdated = data.lastUpdated;
         })
-        fetch('https://api.openaqstatus.org/latency').then(res => res.json()).then(data => {
-            if (data.latencyHistory != latencyHistory) {
-                updateLatencySparkline(data.latencyHistory);
-                updateLatencyScore(data.latencyHistory);
-                latencyHistory = data.latencyHistory;
+        fetch('https://api.openaqstatus.org/response-time').then(res => res.json()).then(data => {
+            if (data.responseTimeHistory != responseTimeHistory) {
+                updateResponseTimeSparkline(data.responseTimeHistory);
+                updateResponseTimeScore(data.responseTimeHistory);
+                responseTimeHistory = data.responseTimeHistory;
             }
         })
     } 
