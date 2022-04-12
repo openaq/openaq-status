@@ -110,7 +110,7 @@ import langs from './i18n';
         const latencyScoreElem = document.querySelector('.js-latency-score');
         latencyScoreElem.classList.remove("latency-score--normal");
         latencyScoreElem.classList.remove("latency-score--high");
-        if (lastValue > 1500) {
+        if (lastValue > 7500) {
             latencyScoreElem.innerText = "High";
             latencyScoreElem.classList.add("latency-score--high");
         } else {
