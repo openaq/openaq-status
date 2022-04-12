@@ -206,10 +206,10 @@ import langs from './i18n';
             lastUpdated = data.lastUpdated;
         })
         fetch('https://api.openaqstatus.org/response-time').then(res => res.json()).then(data => {
-            if (data.responseTimeHistory != responseTimeHistory) {
+            if (data.responseHistory != responseTimeHistory) {
                 updateResponseTimeSparkline(data.responseTimeHistory);
                 updateResponseTimeScore(data.responseTimeHistory);
-                responseTimeHistory = data.responseTimeHistory;
+                responseTimeHistory = data.responseHistory;
             }
         })
     } 
