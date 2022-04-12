@@ -217,8 +217,9 @@
 {{ end }}
 {{ define "script" }}
 {{ $js := resources.Get "js/index.js" | js.Build | resources.Minify }}
+{{ $secureJS := $js | resources.Fingerprint "sha512" }}
 <script>
   const lang = "{{ .Language.Lang }}";
 </script>
-<script src="{{ $js.RelPermalink }}"></script>
+<script type="text/javascript" src="{{ $secureJS.Permalink }}" integrity="{{ $secureJS.Data.Integrity }}"></script>
 {{ end }}
