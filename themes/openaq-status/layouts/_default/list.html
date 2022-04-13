@@ -6,27 +6,39 @@
       <ul class="card-list">
           <li class="card-list__item">
               <span class="item-title">{{ i18n "api-requests" }}<div class="icon"><img src="/svg/chevron-down.svg" alt="" data-state="closed" class="expand-btn js-expand-btn"></div></span>
-              <div class="status-badge js-requests-status-badge"></div>
+              <div class="tooltip status-badge js-requests-status-badge">
+                <div class="top"> <p></p> <i></i></div>
+              </div>
           </li>
           <li class="card-list__item--hidden js-endpoint-status js-v2-locations-card-list__item">
             <span class="endpoint-title">/v2/locations</span>
-            <div class="status-badge js-v2-locations-status-badge"></div>
+            <div class="tooltip status-badge js-v2-locations-status-badge">
+              <div class="top"> <p>Foo</p> <i></i></div>
+            </div>
           </li>
           <li class="card-list__item--hidden js-endpoint-status js-v2-measurements-card-list__item">
             <span class="endpoint-title">/v2/measurements</span>
-            <div class="status-badge js-v2-measurements-status-badge"></div>
+            <div class="tooltip status-badge js-v2-measurements-status-badge">
+              <div class="top"> <p></p> <i></i></div>
+            </div>
           </li>
           <li class="card-list__item--hidden js-endpoint-status js-v2-latest-card-list__item">
             <span class="endpoint-title">/v2/latest</span>
-            <div class="status-badge js-v2-latest-status-badge"></div>
+            <div class="tooltip status-badge js-v2-latest-status-badge">
+              <div class="top"> <p></p> <i></i></div>
+            </div>
           </li>
           <li class="card-list__item--hidden js-endpoint-status js-v2-parameters-card-list__item">
             <span class="endpoint-title">/v2/parameters</span>
-            <div class="status-badge js-v2-parameters-status-badge"></div>
+            <div class="tooltip status-badge js-v2-parameters-status-badge">
+              <div class="top"> <p></p> <i></i></div>
+            </div>
           </li>
           <li class="card-list__item--hidden js-endpoint-status js-v2-sources-card-list__item">
             <span class="endpoint-title">/v2/sources</span>
-            <div class="status-badge js-v2-sources-status-badge"></div>
+            <div class="tooltip status-badge js-v2-sources-status-badge">
+              <div class="top"> <p></p> <i></i></div>
+            </div>
           </li>
           <li class="card-list__item">
               <div>API Response Time — <span class="response-time-score js-response-time-score"></span></div>
