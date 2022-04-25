@@ -13,7 +13,6 @@ import langs from './i18n';
     function updateCalendars(data) {
         const d = new Date();
         let month = d.getMonth();
-        console.log(month);
 
         const d1 = new Date();
         const d2 = new Date();
@@ -65,7 +64,6 @@ import langs from './i18n';
     }
 
     function updateStatus(data) {
-        console.log(data)
         const statusHeader = document.querySelector('.js-status-header');
         const statusBadge = document.querySelector('.js-requests-status-badge');
         resetHeader(statusHeader);
@@ -74,28 +72,34 @@ import langs from './i18n';
             statusHeader.classList.add('status-header--operational')
             statusHeader.innerText = langs[lang].allServicesOperational;
             statusBadge.classList.add('status-badge--operational');
+            statusBadge.querySelector('div > p').innerText = 'All endpoints operational during last hour';
         }    
         if (data.status == "intermittent") {
             statusHeader.classList.add('status-header--intermittent')
             statusHeader.innerText = 'Intermittent Outages';
             statusBadge.classList.add('status-badge--intermittent');
+            statusBadge.querySelector('div > p').innerText = 'One or more endpoints errored during last hour';
         }  
         if (data.status == "down") {
             statusHeader.classList.add('status-header--down')
             statusHeader.innerText = 'All Services Down';
             statusBadge.classList.add('status-badge--down');
+            statusBadge.querySelector('div > p').innerText = 'All endpoints erroring during last hour';
         }
         for (const endpoint of data.endpoints) {
             const [_, version, path] = endpoint.name.split('\/');
             const badgeElem = document.querySelector(`.js-${version}-${path}-status-badge`);
             if (data.status == "operational") {
                 badgeElem.classList.add('status-badge--operational');
+                badgeElem.querySelector('div > p').innerText = 'No errors detected during last hour';
             }    
             if (data.status == "intermittent") {
                 badgeElem.classList.add('status-badge--intermittent');
+                badgeElem.querySelector('div > p').innerText = 'One of more errors detected during last hour';
             }  
             if (data.status == "down") {
                 badgeElem.classList.add('status-badge--down');
+                badgeElem.querySelector('div > p').innerText = 'complete outage during last hour';
             }
         }  
     }
