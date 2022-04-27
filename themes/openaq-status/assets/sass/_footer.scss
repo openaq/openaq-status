@@ -59,11 +59,23 @@
 
 @media only screen and (max-width: 600px) {
 
+    .card-list__item {
+        font-size: 0.8rem;
+    }
+
     .lang-full-name {
         display: none;
     }
 
     .lang-short-name {
         display: block;
+    }
+
+    .github-link > span {
+        display: none;
+    }
+
+    .slack-link > span {
+        display: none;
     }
 }
