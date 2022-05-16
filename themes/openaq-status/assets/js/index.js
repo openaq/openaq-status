@@ -89,15 +89,15 @@ import langs from './i18n';
         for (const endpoint of data.endpoints) {
             const [_, version, path] = endpoint.name.split('\/');
             const badgeElem = document.querySelector(`.js-${version}-${path}-status-badge`);
-            if (data.status == "operational") {
+            if (endpoint.status == "operational") {
                 badgeElem.classList.add('status-badge--operational');
                 badgeElem.querySelector('div > p').innerText = 'No errors detected during last hour';
             }    
-            if (data.status == "intermittent") {
+            if (endpoint.status == "intermittent") {
                 badgeElem.classList.add('status-badge--intermittent');
                 badgeElem.querySelector('div > p').innerText = 'One of more errors detected during last hour';
             }  
-            if (data.status == "down") {
+            if (endpoint.status == "down") {
                 badgeElem.classList.add('status-badge--down');
                 badgeElem.querySelector('div > p').innerText = 'complete outage during last hour';
             }
