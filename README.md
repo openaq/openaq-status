@@ -8,7 +8,7 @@ A status page for the OpenAQ API. The page is live on [https://openaqstatus.org]
 
 ## Development
 
-The page is built with the [Hugo](https://gethugo.io) static site generator and hosted on AWS S3.
+The page is built with the [Hugo](https://gohugo.io) static site generator and hosted on AWS S3.
 
 ## Previous Version
 
